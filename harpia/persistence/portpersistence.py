@@ -16,6 +16,7 @@ class PortPersistence():
     This class contains methods related the PortPersistence class.
     """
 
+tag_name = "HarpiaPort"
     # ----------------------------------------------------------------------
     @classmethod
     def load(cls, file_name):
@@ -30,22 +31,22 @@ class PortPersistence():
         if os.path.exists(file_name) is False:
             return
         parser = XMLParser(file_name)
-        if parser.getTag("HarpiaPort") is None:
+        if parser.getTag(tag_name) is None:
             return None
 
         port = Port()
-        port.type = parser.getTagAttr("HarpiaPort", "type")
-        port.language = parser.getTagAttr("HarpiaPort", "language")
-        port.label = parser.getTagAttr("HarpiaPort", "label")
-        port.color = parser.getTagAttr("HarpiaPort", "color")
-        port.multiple = parser.getTagAttr("HarpiaPort", "multiple")
-        port.source = parser.getTagAttr("HarpiaPort", "source")
-        port.code = parser.getTag("HarpiaPort").getTag("code").getText()
+        port.type = parser.getTagAttr(tag_name, "type")
+        port.language = parser.getTagAttr(tag_name, "language")
+        port.label = parser.getTagAttr(tag_name, "label")
+        port.color = parser.getTagAttr(tag_name, "color")
+        port.multiple = parser.getTagAttr(tag_name, "multiple")
+        port.source = parser.getTagAttr(tag_name, "source")
+        port.code = parser.getTag(tag_name).getTag("code").getText()
 
         count = 0
         for code in port.input_codes:
-            port.input_codes[count] = parser.getTag('HarpiaPort').getTag('input_code' + str(count)).getText()
-            port.output_codes[count] = parser.getTag('HarpiaPort').getTag('output_code' + str(count)).getText()
+            port.input_codes[count] = parser.getTag(tag_name).getTag('input_code' + str(count)).getText()
+            port.output_codes[count] = parser.getTag(tag_name).getTag('output_code' + str(count)).getText()
             count = count + 1
 
         if port.type == "":
@@ -65,21 +66,21 @@ class PortPersistence():
         from harpia.system import System
         port.source = "xml"
         parser = XMLParser()
-        parser.addTag('HarpiaPort')
+        parser.addTag(tag_name)
 
-        parser.setTagAttr('HarpiaPort','type', port.type)
-        parser.setTagAttr('HarpiaPort','language', port.language)
-        parser.setTagAttr('HarpiaPort','label', port.label)
-        parser.setTagAttr('HarpiaPort','color', port.color)
-        parser.setTagAttr('HarpiaPort','multiple', port.multiple)
-        parser.setTagAttr('HarpiaPort','source', port.source)
-        parser.appendToTag('HarpiaPort','code').string = str(port.code)
+        parser.setTagAttr(tag_name, 'type', port.type)
+        parser.setTagAttr(tag_name, 'language', port.language)
+        parser.setTagAttr(tag_name, 'label', port.label)
+        parser.setTagAttr(tag_name, 'color', port.color)
+        parser.setTagAttr(tag_name, 'multiple', port.multiple)
+        parser.setTagAttr(tag_name, 'source', port.source)
+        parser.appendToTag(tag_name, 'code').string = str(port.code)
 
         count = 0
         for code in port.input_codes:
-            parser.appendToTag('HarpiaPort', 'input_code' + \
+            parser.appendToTag(tag_name, 'input_code' + \
                         str(count)).string = str(port.input_codes[count])
-            parser.appendToTag('HarpiaPort', 'output_code' + \
+            parser.appendToTag(tag_name, 'output_code' + \
                         str(count)).string = str(port.output_codes[count])
             count = count + 1
 

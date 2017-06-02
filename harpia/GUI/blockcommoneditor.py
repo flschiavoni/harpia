@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # noqa: E402
 """
-This module contains the PluginManager class.
+This module contains the BlockCommonEditor class.
 """
 import os
 import gi
@@ -19,8 +19,8 @@ from harpia.GUI.components.openfilefield import OpenFileField
 from harpia.GUI.components.stringfield import StringField
 from harpia.GUI.dialog import Dialog
 from harpia.GUI.fieldtypes import *
-from harpia.GUI.pluginporteditor import PluginPortEditor
-from harpia.GUI.pluginpropertyeditor import PluginPropertyEditor
+from harpia.GUI.blockporteditor import BlockPortEditor
+from harpia.GUI.blockpropertyeditor import BlockPropertyEditor
 from harpia.model.plugin import Plugin
 from harpia.system import System as System
 import gettext
@@ -28,43 +28,43 @@ import gettext
 _ = gettext.gettext
 
 
-class PluginCommonEditor(Gtk.ScrolledWindow):
+class BlockCommonEditor(Gtk.ScrolledWindow):
     """
-    This class contains methods related the PluginManager class
+    This class contains methods related the BlockCommonEditor class
     """
 
     # ----------------------------------------------------------------------
-    def __init__(self, plugin_editor, plugin):
+    def __init__(self, block_editor, block):
         Gtk.ScrolledWindow.__init__(self)
 
-        self.plugin_editor = plugin_editor
-        self.plugin = plugin
+        self.block_editor = block_editor
+        self.block = block
 
         for widget in self.get_children():
             self.remove(widget)
         vbox = Gtk.VBox()
         self.add(vbox)
 
-        data = {"label": _("Label"), "value": plugin.label}
+        data = {"label": _("Label"), "value": block.label}
         self.label_field = StringField(data, self.__on_edit)
 
-        data = {"label": _("Language"), "value": plugin.language}
+        data = {"label": _("Language"), "value": block.language}
         self.language_field = StringField(data, self.__on_edit)
 
-        data = {"label": _("Framework"), "value": plugin.framework}
+        data = {"label": _("Framework"), "value": block.framework}
         self.framework_field = StringField(data, self.__on_edit)
 
-        data = {"label": _("Plugin Type"), "value": plugin.type}
+        data = {"label": _("Block Type"), "value": block.type}
         self.type_field = StringField(data, self.__on_edit)
 
-        data = {"label": _("Group"), "value": plugin.group}
+        data = {"label": _("Group"), "value": block.group}
         self.group_field = StringField(data, self.__on_edit)
 
-        data = {"label": _("Color"), "value": plugin.get_color()}
+        data = {"label": _("Color"), "value": block.get_color()}
         self.color_field = ColorField(data, self.__on_edit)
-        self.color_field.set_parent_window(self.plugin_editor)
+        self.color_field.set_parent_window(self.block_editor)
 
-        data = {"label": _("Help"), "value": plugin.help}
+        data = {"label": _("Help"), "value": block.help}
         self.help_field = CommentField(data, self.__on_edit)
 
         vbox.pack_start(self.label_field, False, False, 1)
@@ -85,13 +85,13 @@ class PluginCommonEditor(Gtk.ScrolledWindow):
                 self.label_field.get_value().lower().replace(" ","")
                 )
 
-        self.plugin.type = self.type_field.get_value()
-        self.plugin.language = self.language_field.get_value()
-        self.plugin.framework = self.framework_field.get_value()
+        self.block.type = self.type_field.get_value()
+        self.block.language = self.language_field.get_value()
+        self.block.framework = self.framework_field.get_value()
 
-        self.plugin.label = self.label_field.get_value()
-        self.plugin.group = self.group_field.get_value()
-        self.plugin.color = self.color_field.get_value()
-        self.plugin.help = self.help_field.get_value()
+        self.block.label = self.label_field.get_value()
+        self.block.group = self.group_field.get_value()
+        self.block.color = self.color_field.get_value()
+        self.block.help = self.help_field.get_value()
 
 # ----------------------------------------------------------------------

@@ -28,18 +28,18 @@ class BlockControl():
     def export_xml(cls):
         from harpia.system import System as System
         System()
-        for plugin in System.plugins:
-            print "Exporting plugin " + plugin
-            BlockPersistence.save(System.plugins[plugin])
+        for block in System.blocks:
+            print "Exporting block " + block
+            BlockPersistence.save(System.blocks[block])
 
     # ----------------------------------------------------------------------
     @classmethod
     def export_python(cls):
         from harpia.system import System as System
         System()
-        for plugin in System.plugins:
-            print "Exporting plugin " + plugin
-            BlockPersistence.save_python(System.plugins[plugin])
+        for block in System.blocks:
+            print "Exporting block " + block
+            BlockPersistence.save_python(System.blocks[block])
 
     # ----------------------------------------------------------------------
     @classmethod
@@ -54,50 +54,50 @@ class BlockControl():
         BlockPersistence.load(file_name)
     # ----------------------------------------------------------------------
     @classmethod
-    def add_plugin(cls, plugin):
+    def add_block(cls, block):
         # first, save it
-        BlockPersistence.save(plugin)
+        BlockPersistence.save(block)
         # Then add it to system
         from harpia.system import System
-        System.plugins[plugin.type] = plugin
+        System.blocks[block.type] = block
 
     # ----------------------------------------------------------------------
     @classmethod
-    def delete_plugin(cls, plugin):
+    def delete_block(cls, block):
         from harpia.system import System
-        if plugin.source == "xml":
+        if block.source == "xml":
             data_dir = System.get_user_dir() + "/extensions/"
-            file_name = data_dir + plugin.type + ".xml"
+            file_name = data_dir + block.type + ".xml"
             os.remove(file_name)
-            System.plugins.pop(plugin.type, None)
+            System.blocks.pop(block.type, None)
             return True
         else:
             return False
 
     # ----------------------------------------------------------------------
     @classmethod
-    def print_plugin(cls, plugin):
+    def print_block(cls, block):
         """
-        This method prints the plugin properties.
+        This method prints the block properties.
         """
-        print 'Plugin.id =', plugin.id
-        print 'Plugin.x =', plugin.x
-        print 'Plugin.y =', plugin.y
+        print 'Block.id =', block.id
+        print 'Block.x =', block.x
+        print 'Block.y =', block.y
 
-        print 'Plugin.type =', plugin.type
-        print 'Plugin.language =', plugin.language
-        print 'Plugin.framework =', plugin.framework
-        print 'Plugin.source =', plugin.source
+        print 'Block.type =', block.type
+        print 'Block.language =', block.language
+        print 'Block.framework =', block.framework
+        print 'Block.source =', block.source
 
         # Appearance
-        print 'Plugin.help =', plugin.help
-        print 'Plugin.label =', plugin.label
-        print 'Plugin.color =', plugin.color
-        print 'Plugin.group =', plugin.group
-        print 'Plugin.in_ports =', plugin.in_ports
-        print 'Plugin.out_ports =', plugin.out_ports
+        print 'Block.help =', block.help
+        print 'Block.label =', block.label
+        print 'Block.color =', block.color
+        print 'Block.group =', block.group
+        print 'Block.in_ports =', block.in_ports
+        print 'Block.out_ports =', block.out_ports
 
         # Code generation
-        print 'Plugin.properties =', plugin.properties
-        print 'Plugin.codes =', plugin.codes
+        print 'Block.properties =', block.properties
+        print 'Block.codes =', block.codes
 # ----------------------------------------------------------------------

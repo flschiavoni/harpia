@@ -93,8 +93,8 @@ class Menu(Gtk.MenuBar):
         plugin_menu = Gtk.Menu()
         self.__create_menu(_("Code Template Manager"), None,
                            plugin_menu, mc.code_template_manager)
-        self.__create_menu(_("Plugin Manager"), None,
-                           plugin_menu, mc.plugin_manager)
+        self.__create_menu(_("Block Manager"), None,
+                           plugin_menu, mc.block_manager)
         self.__create_menu(_("Port Manager"), None,
                            plugin_menu, mc.port_manager)
         plugin_menu.append(Gtk.SeparatorMenuItem())

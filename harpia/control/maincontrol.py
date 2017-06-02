@@ -10,7 +10,7 @@ from harpia.GUI.about import About
 from harpia.GUI.diagram import Diagram
 from harpia.GUI.codewindow import CodeWindow
 from harpia.GUI.codetemplatemanager import CodeTemplateManager
-from harpia.GUI.pluginmanager import PluginManager
+from harpia.GUI.blockmanager import BlockManager
 from harpia.GUI.portmanager import PortManager
 from harpia.GUI.preferencewindow import PreferenceWindow
 from harpia.control.diagramcontrol import DiagramControl
@@ -441,11 +441,11 @@ class MainControl():
 
 
     # ----------------------------------------------------------------------
-    def plugin_manager(self):
+    def block_manager(self):
         """
-        This add a new plugin.
+        This add a new block.
         """
-        PluginManager(self.main_window)
+        BlockManager(self.main_window)
 
     # ----------------------------------------------------------------------
     def port_manager(self):
@@ -477,14 +477,14 @@ class MainControl():
             Dialog().message_dialog("Error", message, self.main_window)
 
     # ----------------------------------------------------------------------
-    def add_plugin(self, plugin):
-        BlockControl.add_plugin(plugin)
+    def add_block(self, block):
+        BlockControl.add_block(block)
         self.main_window.block_notebook.update()
 
     # ----------------------------------------------------------------------
-    def delete_plugin(self, plugin):
-        if not BlockControl.delete_plugin(plugin):
-            message = "This plugin is a python file installed in the System.\n"
+    def delete_block(self, block):
+        if not BlockControl.delete_block(block):
+            message = "This block is a python file installed in the System.\n"
             message = message + "Sorry, you can't remove it"
             Dialog().message_dialog("Error", message, self.main_window)
         self.main_window.block_notebook.update()
@@ -503,9 +503,9 @@ class MainControl():
     # ----------------------------------------------------------------------
     @classmethod
     def print_plugins(cls):
-        for plugin in System.plugins:
+        for block in System.blocks:
             print "--------------------- "
-            BlockControl.print_plugin(System.plugins[plugin])
+            BlockControl.print_plugin(System.blocks[block])
     # ----------------------------------------------------------------------
     @classmethod
     def print_templates(cls):

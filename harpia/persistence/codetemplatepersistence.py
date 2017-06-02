@@ -11,6 +11,8 @@ from harpia.utils.XMLUtils import XMLParser
 from harpia.utils.PythonUtils import PythonParser
 from harpia.model.codetemplate import CodeTemplate
 
+tag_name = 'HarpiaCodeTemplate'
+
 class CodeTemplatePersistence():
     """
     This class contains methods related the CodeTemplatePersistence class.
@@ -31,19 +33,19 @@ class CodeTemplatePersistence():
             return
         parser = XMLParser(file_name)
 
-        if parser.getTag("HarpiaCodeTemplate") is None:
+        if parser.getTag(tag_name) is None:
             return None
 
         try:
             code_template = CodeTemplate()
-            code_template.name = parser.getTagAttr("HarpiaCodeTemplate",  "name")
-            code_template.type = parser.getTagAttr("HarpiaCodeTemplate",  "type")
-            code_template.description = parser.getTagAttr("HarpiaCodeTemplate",  "description")
-            code_template.language = parser.getTagAttr("HarpiaCodeTemplate",  "language")
-            code_template.extension = parser.getTagAttr("HarpiaCodeTemplate",  "extension")
-            code_template.source = parser.getTagAttr("HarpiaCodeTemplate",  "source")
-            code_template.command = parser.getTag("HarpiaCodeTemplate").getTag("command").getText()
-            code_template.code = parser.getTag("HarpiaCodeTemplate").getTag("code").getText()
+            code_template.name = parser.getTagAttr(tag_name,  "name")
+            code_template.type = parser.getTagAttr(tag_name,  "type")
+            code_template.description = parser.getTagAttr(tag_name,  "description")
+            code_template.language = parser.getTagAttr(tag_name,  "language")
+            code_template.extension = parser.getTagAttr(tag_name,  "extension")
+            code_template.source = parser.getTagAttr(tag_name,  "source")
+            code_template.command = parser.getTag(tag_name).getTag("command").getText()
+            code_template.code = parser.getTag(tag_name).getTag("code").getText()
         except:
             return None
 
@@ -64,15 +66,15 @@ class CodeTemplatePersistence():
         from harpia.system import System
         code_template.source = "xml"
         parser = XMLParser()
-        parser.addTag('HarpiaCodeTemplate')
-        parser.setTagAttr('HarpiaCodeTemplate','name', code_template.name)
-        parser.setTagAttr('HarpiaCodeTemplate','type', code_template.type)
-        parser.setTagAttr('HarpiaCodeTemplate','description', code_template.description)
-        parser.setTagAttr('HarpiaCodeTemplate','language', code_template.language)
-        parser.setTagAttr('HarpiaCodeTemplate','extension', code_template.extension)
-        parser.setTagAttr('HarpiaCodeTemplate','source', code_template.source)
-        parser.appendToTag('HarpiaCodeTemplate','command').string = str(code_template.command)
-        parser.appendToTag('HarpiaCodeTemplate','code').string = str(code_template.code)
+        parser.addTag(tag_name)
+        parser.setTagAttr(tag_name,'name', code_template.name)
+        parser.setTagAttr(tag_name,'type', code_template.type)
+        parser.setTagAttr(tag_name,'description', code_template.description)
+        parser.setTagAttr(tag_name,'language', code_template.language)
+        parser.setTagAttr(tag_name,'extension', code_template.extension)
+        parser.setTagAttr(tag_name,'source', code_template.source)
+        parser.appendToTag(tag_name,'command').string = str(code_template.command)
+        parser.appendToTag(tag_name,'code').string = str(code_template.code)
 
         try:
             data_dir = System.get_user_dir() + "/extensions/"

@@ -36,7 +36,7 @@ class DiagramPersistence():
             "blocks").getChildTags("block")
         for block in blocks:
             block_type = block.getAttr("type")
-            if block_type not in System.plugins:
+            if block_type not in System.blocks:
                 continue
             block_id = int(block.getAttr("id"))
             position = block.getTag("position")
@@ -49,7 +49,7 @@ class DiagramPersistence():
                     props[prop.key] = prop.value
                 except:
                     pass
-            new_block = System.plugins[block_type]
+            new_block = System.blocks[block_type]
             new_block.set_properties(props)
             new_block.id = block_id
             new_block.x = float(x)

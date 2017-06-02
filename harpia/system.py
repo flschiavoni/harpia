@@ -45,7 +45,7 @@ class System(object):
             self.Log = None
             self.properties = Preferences()
             self.code_templates = {}
-            self.plugins = {}
+            self.blocks = {}
             self.list_of_examples = []
             self.ports = {}
             self.__load()
@@ -74,10 +74,10 @@ class System(object):
                     port.source = "xml"
                     self.ports[port.type] = port
 
-                plugin = BlockControl.load(full_file_path)
-                if plugin is not None:
-                    plugin.source = "xml"
-                    self.plugins[plugin.type] = plugin
+                block = BlockControl.load(full_file_path)
+                if block is not None:
+                    block.source = "xml"
+                    self.blocks[block.type] = block
 
         # ----------------------------------------------------------------------
         def __load(self):
@@ -95,10 +95,10 @@ class System(object):
                 self.list_of_examples.append(example)
             self.list_of_examples.sort()
 
-            # Load CodeTemplates, Plugins and Ports
+            # Load CodeTemplates, Blocks and Ports
             self.code_templates.clear()
             self.ports.clear()
-            self.plugins.clear()
+            self.blocks.clear()
             # First load ports on python classes.
             # They are installed with harpia as root 
             for importer, modname, ispkg in pkgutil.walk_packages(
@@ -122,7 +122,7 @@ class System(object):
                         self.ports[instance.type] = instance
                     if isinstance(instance, Plugin):
                         if instance.label != "":
-                            self.plugins[instance.type] = instance
+                            self.blocks[instance.type] = instance
 
             # Load XML files in application space
             self.__load_xml(System.DATA_DIR + "extensions/")
@@ -140,7 +140,7 @@ class System(object):
             System.instance = System.__Singleton()
             # Add properties dynamically
             cls.properties = System.instance.properties
-            cls.plugins = System.instance.plugins
+            cls.blocks = System.instance.blocks
             cls.list_of_examples = System.instance.list_of_examples
             cls.ports = System.instance.ports
             cls.code_templates = System.instance.code_templates

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # noqa: E402
 """
-This module contains the PluginManager class.
+This module contains the PortEditor class.
 """
 import os
 import gi

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # noqa: E402
 """
-This module contains the PluginManager class.
+This module contains the BlockManager class.
 """
 import os
 import gi
@@ -18,7 +18,7 @@ from harpia.GUI.components.codefield import CodeField
 from harpia.GUI.components.openfilefield import OpenFileField
 from harpia.GUI.blocknotebook import BlockNotebook
 from harpia.GUI.fieldtypes import *
-from harpia.GUI.plugineditor import PluginEditor
+from harpia.GUI.blockeditor import BlockEditor
 from harpia.GUI.dialog import Dialog
 from harpia.model.plugin import Plugin
 from harpia.system import System as System
@@ -27,24 +27,23 @@ import gettext
 _ = gettext.gettext
 
 
-class PluginManager(Gtk.Dialog):
+class BlockManager(Gtk.Dialog):
     """
-    This class contains methods related the PluginManager class
+    This class contains methods related the BlockManager class
     """
 
     # ----------------------------------------------------------------------
     def __init__(self, main_window):
-        Gtk.Dialog.__init__(self, _("Plugin Manager"), main_window, 0, ())
+        Gtk.Dialog.__init__(self, _("Block Manager"), main_window, 0, ())
 
         self.main_window = main_window
-        self.plugin = Plugin()
         self.main_control = self
         self.set_default_size(400, 300)
         box = self.get_content_area()
         vbox = Gtk.VBox()
         box.pack_start(vbox, True, True, 0)
 
-        # Plugin List
+        # Block List
         self.block_notebook = BlockNotebook(self)
 
         # Button bar
@@ -69,51 +68,51 @@ class PluginManager(Gtk.Dialog):
 
     # ----------------------------------------------------------------------
     def __new(self, widget=None, data=None):
-        PluginEditor(self, Plugin())
+        BlockEditor(self, Plugin())
 
     # ----------------------------------------------------------------------
     def __edit(self, widget=None, data=None):
-        plugin = self.block_notebook.get_selected_block()
-        if plugin is None:
+        block = self.block_notebook.get_selected_block()
+        if block is None:
             return
-        PluginEditor(self, plugin)
+        BlockEditor(self, block)
 
     # ----------------------------------------------------------------------
     def __delete(self, widget=None, data=None):
-        plugin = self.block_notebook.get_selected_block()
-        if plugin is None:
+        block = self.block_notebook.get_selected_block()
+        if block is None:
             return
         dialog = Dialog().confirm_dialog(_("Are you sure?"), self)
         result = dialog.run()
         dialog.destroy()
         if result == Gtk.ResponseType.OK:
-            self.main_window.main_control.delete_plugin(plugin)
+            self.main_window.main_control.delete_block(block)
             self.update()
 
     # ----------------------------------------------------------------------
-    def set_block(self, plugin):
+    def set_block(self, block):
         """
         This method is called when a block is selected. Nothing to do here.
             Parameters:
-                plugin
+                block
             Returns:
                 None.
         """
         pass
 
     # ----------------------------------------------------------------------
-    def add_block(self, plugin):
+    def add_block(self, block):
         """
         This method is called when a block is double clicked.
 
             Parameters:
-                * **plugin** (:class:`<>`)
+                * **block** (:class:`<>`)
         """
-        PluginEditor(self, self.block_notebook.get_selected_block())
+        BlockEditor(self, self.block_notebook.get_selected_block())
 
     # ----------------------------------------------------------------------
-    def add_plugin(self, plugin):
-        self.main_window.main_control.add_plugin(plugin)
+    def add_block(self, block):
+        self.main_window.main_control.add_block(block)
 
     # ----------------------------------------------------------------------
     def update(self):
