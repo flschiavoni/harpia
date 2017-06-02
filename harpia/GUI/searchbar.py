@@ -32,6 +32,6 @@ class SearchBar(Gtk.Box, Gtk.SearchBar):
                 * **SearchBar** (:class:`SearchBar<harpia.GUI.searchbar>`)
         """
         self.main_window.main_control.search(
-            self.search_entry.get_text().upper())
+                self.search_entry.get_text().upper())
         return self.search_entry.get_text()
 # ---------------------------------------------------------------------------

@@ -48,6 +48,7 @@ class BlockNotebook(Gtk.Notebook):
         for language in languages:
             treeview = BlocksTreeView(self.main_window, language)
             self.append_page(treeview, Gtk.Label(language))
+            self.tabs.append(treeview)
         self.show_all()
 
     # ----------------------------------------------------------------------

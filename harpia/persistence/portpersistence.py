@@ -11,12 +11,13 @@ from harpia.utils.XMLUtils import XMLParser
 from harpia.utils.PythonUtils import PythonParser
 from harpia.model.port import Port
 
+tag_name = "HarpiaPort"
+
 class PortPersistence():
     """
     This class contains methods related the PortPersistence class.
     """
 
-tag_name = "HarpiaPort"
     # ----------------------------------------------------------------------
     @classmethod
     def load(cls, file_name):
