@@ -24,7 +24,7 @@ RADIUS = 25
 INPUT_WIDTH = 24
 INPUT_HEIGHT = 12
 
-class Block(GooCanvas.CanvasGroup, Plugin):
+class BlockGUI(GooCanvas.CanvasGroup, Plugin):
     """
     This class contains methods related the Block class
     """
@@ -111,7 +111,7 @@ class Block(GooCanvas.CanvasGroup, Plugin):
         """
         if not event.state & Gdk.ModifierType.BUTTON1_MASK:
             return False
-        if self.diagram.curr_connector is not None:
+        if self.diagram.curr_connection is not None:
             return False
         # Get the new position and move by the difference
         new_x = event.x - self.remember_x
@@ -480,7 +480,7 @@ class Block(GooCanvas.CanvasGroup, Plugin):
         """
         self.has_flow = True
         distinct_con = []
-        for conn in self.diagram.connectors:
+        for conn in self.diagram.connections:
             if conn.sink != self:
                 continue
             if conn.sink_port not in distinct_con:

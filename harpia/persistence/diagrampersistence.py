@@ -103,12 +103,12 @@ class DiagramPersistence():
                                        )
 
         parser.appendToTag('harpia', 'connections')
-        for connector in diagram.connectors:
+        for connection in diagram.connections:
             parser.appendToTag('connections', 'connection',
-                               from_block=connector.source.id,
-                               from_out=int(connector.source_port) + 1,
-                               to_block=connector.sink.id,
-                               to_in=int(connector.sink_port) + 1)
+                               from_block=connection.source.id,
+                               from_out=int(connection.source_port) + 1,
+                               to_block=connection.sink.id,
+                               to_in=int(connection.sink_port) + 1)
 
         try:
             save_file = open(str(diagram.file_name), "w")

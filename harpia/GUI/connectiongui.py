@@ -1,21 +1,20 @@
 # -*- coding: utf-8 -*-
 # noqa: E402
 """
-This module contains the Connector class.
+This module contains the ConnectionGUI class.
 """
 import gi
 gi.require_version('Gtk', '3.0')
 gi.require_version('GooCanvas', '2.0')
 from gi.repository import Gtk
 from gi.repository import GooCanvas
-from connectormenu import ConnectorMenu
-
-from harpia.model.connectionmodel import ConnectionModel
+from connectionmenu import ConnectionMenu
+from harpia.model.connection import Connection
 from harpia.system import System as System
 
-class Connector(GooCanvas.CanvasGroup, ConnectionModel):
+class ConnectionGUI(GooCanvas.CanvasGroup, Connection):
     """
-    This class contains the methods related to Connector class.
+    This class contains the methods related to ConnectionGUI class.
     """
 
     # ----------------------------------------------------------------------
@@ -25,7 +24,7 @@ class Connector(GooCanvas.CanvasGroup, ConnectionModel):
         This method is the constructor.
         """
         GooCanvas.CanvasGroup.__init__(self)
-        ConnectionModel.__init__(self, diagram, source, source_port, conn_type)
+        Connection.__init__(self, diagram, source, source_port, conn_type)
 
         self.__from_point = self.source.get_output_pos(self.source_port)
         self.__to_point = (0, 0)
@@ -56,7 +55,7 @@ class Connector(GooCanvas.CanvasGroup, ConnectionModel):
         """
         Gtk.Widget.grab_focus(self.diagram)
         if event.button.button == 3:
-            ConnectorMenu(self, event)
+            ConnectionMenu(self, event)
 
         if self in self.diagram.current_widgets:
             self.diagram.current_widgets = []
@@ -161,7 +160,7 @@ class Connector(GooCanvas.CanvasGroup, ConnectionModel):
     # ----------------------------------------------------------------------
     def __update_state(self):
         """
-        This method update the connector state.
+        This method update the connection state.
         """
 
         # With focus: line width = 3

@@ -54,7 +54,7 @@ class BlockControl():
         BlockPersistence.load(file_name)
     # ----------------------------------------------------------------------
     @classmethod
-    def add_block(cls, block):
+    def new_block(cls, block):
         # first, save it
         BlockPersistence.save(block)
         # Then add it to system

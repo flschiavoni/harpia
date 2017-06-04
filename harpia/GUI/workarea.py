@@ -38,7 +38,7 @@ class WorkArea(Gtk.Notebook):
         This method add a  new diagram page.
 
             Parameters:
-                * **diagram** (:class:`Diagram<harpia.GUI.diagram`)
+                * **diagram** (:class:`Diagram<harpia.GUI.diagramgui`)
         """
         frame = Gtk.ScrolledWindow()
         frame.set_shadow_type(Gtk.ShadowType.IN)
@@ -133,7 +133,7 @@ class WorkArea(Gtk.Notebook):
         This method rename a diagram page.
 
             Parameters:
-                * **diagram** (:class:`diagram<harpia.GUI.diagram>`)
+                * **diagram** (:class:`diagram<harpia.GUI.diagramgui>`)
         """
         index = -1
         for scrolled_window in self.get_children():

@@ -237,12 +237,12 @@ class BlockPortEditor(Gtk.ScrolledWindow):
     def __create_side_panel(self, configuration):
         self.__clean_side_panel()
 
-        connectors = []
+        connections = []
         for key in System.ports:
             if System.ports[key].language == self.block.language:
-                connectors.append(key)
+                connections.append(key)
 
-        data = {"label": _("Type"), "name":"type", "values": connectors}
+        data = {"label": _("Type"), "name":"type", "values": connections}
         field = ComboField(data, None)
         self.side_panel.pack_start(field, False, False, 1)
         if configuration is not None: field.set_value(configuration["type"])

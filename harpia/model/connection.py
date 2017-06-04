@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 
-class ConnectionModel(object):
+class Connection(object):
 
     # -------------------------------------------------------------------------
     def __init__(self, diagram, source, source_port, conn_type):

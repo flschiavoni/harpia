@@ -7,7 +7,7 @@ gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
 from harpia.GUI.dialog import Dialog
 from harpia.GUI.about import About
-from harpia.GUI.diagram import Diagram
+from harpia.GUI.diagramgui import DiagramGUI
 from harpia.GUI.codewindow import CodeWindow
 from harpia.GUI.codetemplatemanager import CodeTemplateManager
 from harpia.GUI.blockmanager import BlockManager
@@ -39,7 +39,7 @@ class MainControl():
         """
         This method create a new the diagram file.
         """
-        self.main_window.work_area.add_diagram(Diagram(self.main_window))
+        self.main_window.work_area.add_diagram(DiagramGUI(self.main_window))
 
     # ----------------------------------------------------------------------
     def select_open(self):
@@ -58,7 +58,7 @@ class MainControl():
         """
         This method open a file.
         """
-        diagram = Diagram(self.main_window)
+        diagram = DiagramGUI(self.main_window)
         self.main_window.work_area.add_diagram(diagram)
         DiagramControl(diagram).load(file_name)
         diagram.set_modified(False)
@@ -70,6 +70,9 @@ class MainControl():
         """
         This method closes a tab on the work area.
         """
+        diagram = self.main_window.work_area.get_current_diagram()
+        if diagram is None:
+            return
         self.main_window.work_area.close_tab()
 
     # ----------------------------------------------------------------------
@@ -477,8 +480,8 @@ class MainControl():
             Dialog().message_dialog("Error", message, self.main_window)
 
     # ----------------------------------------------------------------------
-    def add_block(self, block):
-        BlockControl.add_block(block)
+    def new_block(self, block):
+        BlockControl.new_block(block)
         self.main_window.block_notebook.update()
 
     # ----------------------------------------------------------------------

@@ -131,7 +131,7 @@ class CodeGenerator():
             except:
                 block.__class__.connections = []
 
-            for connection in self.diagram.connectors:
+            for connection in self.diagram.connections:
                 if connection.source != block:
                     continue
                 block.connections.append(connection)

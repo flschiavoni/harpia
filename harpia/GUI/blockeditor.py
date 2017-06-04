@@ -63,7 +63,7 @@ class BlockEditor(Gtk.Dialog):
         self.show_all()
         result = self.run()
         if result == Gtk.ResponseType.OK:
-            self.block_manager.main_control.add_block(block)
+            self.block_manager.main_control.new_block(block)
             self.block_manager.update()
         self.close()
         self.destroy()
