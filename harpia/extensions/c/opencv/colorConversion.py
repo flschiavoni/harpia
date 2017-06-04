@@ -16,6 +16,8 @@ class ColorConversion(Plugin):
     def __init__(self):
         Plugin.__init__(self)
         self.conversion_type = 'RGB -> GRAY'
+        self.language = "c"
+        self.framework = "opencv"
 
         # Appearance
         self.help = "Realiza a conversão de cores entre diferentes " + \
@@ -101,7 +103,4 @@ class ColorConversion(Plugin):
             'block$id$_img_t ,NULL ,block$id$_img_o0);\n }\n' + \
             'else\n' + '{ block$id$_img_o0 = cvCloneImage(block$id$_img_t);\n}'
 
-
-        self.language = "c"
-        self.framework = "opencv"
 # -----------------------------------------------------------------------------

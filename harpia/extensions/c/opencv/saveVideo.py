@@ -15,6 +15,8 @@ class SaveVideo(Plugin):
 
     def __init__(self):
         Plugin.__init__(self)
+        self.language = "c"
+        self.framework = "opencv"
         self.filename = "~/Output.mpeg"
         self.framerate = 25.0
         self.codecSelection = "MPEG1"
@@ -88,6 +90,4 @@ class SaveVideo(Plugin):
             '   cvWriteFrame( block$id$_vidWriter, block$id$_img_i0);\n' + \
             '   block$id$_img_o0 = block$id$_img_i0;\n' + \
             '}\n'
-        self.language = "c"
-        self.framework = "opencv"
 # -----------------------------------------------------------------------------

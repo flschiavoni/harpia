@@ -18,6 +18,8 @@ class PlotHistogram(Plugin):
         self.channel = "All"
 
         # Appearance
+        self.language = "c"
+        self.framework = "opencv"
         self.help = "Create a representation of the light " + \
             "intensity levels as an histogram."
         self.label = "Histogram"
@@ -176,8 +178,4 @@ class PlotHistogram(Plugin):
             ' - 1),cvScalarAll(255),1, 0,0 );\n' + \
             '  }\n' + \
             '}\n'
-
-
-        self.language = "c"
-        self.framework = "opencv"
 # -----------------------------------------------------------------------------

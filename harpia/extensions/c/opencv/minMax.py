@@ -23,6 +23,8 @@ class MinMax(Plugin):
         self.maxVal = 500
         self.minORmax = "min"
         self.criteria = "pos"
+        self.language = "c"
+        self.framework = "opencv"
 
         # Appearance
         self.help = "Finds min or max from input image and judges " + \
@@ -113,7 +115,4 @@ class MinMax(Plugin):
 
         return value
 
-
-        self.language = "c"
-        self.framework = "opencv"
 # -----------------------------------------------------------------------------

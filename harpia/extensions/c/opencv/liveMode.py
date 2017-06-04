@@ -25,6 +25,8 @@ class LiveMode(Plugin):
         self.color = "50:100:200:150"
         self.out_types = ["harpia.extensions.c.ports.image"]
         self.group = "Image Source"
+        self.language = "c"
+        self.framework = "opencv"
 
         # ------------------------------C/OpenCv code--------------------------
         self.codes[2] = \
@@ -59,6 +61,4 @@ class LiveMode(Plugin):
             'block$id$_capture = cvCaptureFromCAM(' + camera + ');\n' + \
             'IplImage * block$id$_frame = NULL;\n' + \
             'IplImage * block$id$_img_o0 = NULL;\n'
-        self.language = "c"
-        self.framework = "opencv"
 # -----------------------------------------------------------------------------

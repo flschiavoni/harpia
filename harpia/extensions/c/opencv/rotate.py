@@ -15,6 +15,8 @@ class Rotate(Plugin):
 
     def __init__(self):
         Plugin.__init__(self)
+        self.language = "c"
+        self.framework = "opencv"
         self.isCenter = True
         self.isScalling = True
         self.isFilling = True
@@ -114,6 +116,4 @@ class Rotate(Plugin):
         return value
 
 
-        self.language = "c"
-        self.framework = "opencv"
 # -----------------------------------------------------------------------------

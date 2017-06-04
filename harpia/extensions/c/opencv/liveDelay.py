@@ -17,6 +17,9 @@ class LiveDelay(Plugin):
         Plugin.__init__(self)
         self.frameNumber = 5
 
+        self.language = "c"
+        self.framework = "opencv"
+
         # Appearance
         self.help = "Inserts a delay inside a live stream."
         self.label = "Live Delay"
@@ -75,7 +78,4 @@ class LiveDelay(Plugin):
 
         return value
 
-
-        self.language = "c"
-        self.framework = "opencv"
 # -----------------------------------------------------------------------------

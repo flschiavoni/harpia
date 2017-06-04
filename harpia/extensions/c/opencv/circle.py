@@ -18,6 +18,8 @@ class Circle(Plugin):
         self.x0 = 100
         self.y0 = 100
         self.circle_color = "#0000ffff0000"
+        self.language = "c"
+        self.framework = "opencv"
 
         self.red = self.circle_color[1:5]
         self.green = self.circle_color[5:9]
@@ -86,6 +88,4 @@ class Circle(Plugin):
             'cvCircle(block$id$_img_i0, center, 10, color, 1, 8, 0);\n' +\
             'block$id$_img_o0 = cvCloneImage(block$id$_img_i0);\n' + \
             '}\n'
-        self.language = "c"
-        self.framework = "opencv"
 # -----------------------------------------------------------------------------

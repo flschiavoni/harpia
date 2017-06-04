@@ -16,6 +16,8 @@ class Fill(Plugin):
     def __init__(self):
         Plugin.__init__(self)
         self.rect_color = "#0000ffff0000"
+        self.language = "c"
+        self.framework = "opencv"
 
         # Appearance
         self.help = "Preenche toda a imagem de uma cor."
@@ -53,6 +55,4 @@ class Fill(Plugin):
             '}\n'
 
 
-        self.language = "c"
-        self.framework = "opencv"
 # -----------------------------------------------------------------------------
