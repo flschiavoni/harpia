@@ -10,12 +10,12 @@ gi.require_version('Gtk', '3.0')
 gi.require_version('GtkSource', '3.0')
 from gi.repository import Gtk
 from gi.repository import GtkSource
-from harpia.GUI.components.stringfield import StringField
-from harpia.GUI.components.combofield import ComboField
-from harpia.GUI.components.colorfield import ColorField
-from harpia.GUI.components.commentfield import CommentField
-from harpia.GUI.components.codefield import CodeField
-from harpia.GUI.components.openfilefield import OpenFileField
+from mosaicomponents.stringfield import StringField
+from mosaicomponents.combofield import ComboField
+from mosaicomponents.colorfield import ColorField
+from mosaicomponents.commentfield import CommentField
+from mosaicomponents.codefield import CodeField
+from mosaicomponents.openfilefield import OpenFileField
 from harpia.GUI.fieldtypes import *
 from harpia.GUI.porteditor import PortEditor
 from harpia.GUI.dialog import Dialog

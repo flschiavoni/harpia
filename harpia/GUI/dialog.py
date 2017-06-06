@@ -7,7 +7,7 @@ import gi
 import os
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
-from harpia.GUI.components.stringfield import StringField
+import mosaicomponents
 import gettext
 _ = gettext.gettext
 

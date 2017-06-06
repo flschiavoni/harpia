@@ -27,7 +27,8 @@ config['classifiers'] = [
 ]
 
 setup(name='harpia',
-      install_requires=['beautifulsoup4', 'pip', 'Python>=2.7'],
+      install_requires=['mosaicomponents', 'beautifulsoup4',
+                'pip', 'Python>=2.7'],
       tests_require=['pytest'],
       test_suite='test',
       version='1.0a7',
@@ -37,7 +38,6 @@ setup(name='harpia',
           'harpia.utils',
           'harpia.persistence',
           'harpia.GUI',
-          'harpia.GUI.components',
           'harpia.extensions',
           'harpia.extensions.c',
           'harpia.extensions.c.opencv',

@@ -6,10 +6,10 @@ This module contains the PreferenceWindow class.
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
-from harpia.system import System as System
-from harpia.GUI.components.stringfield import StringField
-from harpia.GUI.components.openfilefield import OpenFileField
-from harpia.GUI.components.intfield import IntField
+from harpia.system import System
+from mosaicomponents.stringfield import StringField
+from mosaicomponents.openfilefield import OpenFileField
+from mosaicomponents.intfield import IntField
 import gettext
 
 _ = gettext.gettext

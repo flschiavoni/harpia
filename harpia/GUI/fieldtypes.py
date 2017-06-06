@@ -2,16 +2,16 @@
 """
 This module contains the fieldtypes.
 """
-from harpia.GUI.components.checkfield import CheckField
-from harpia.GUI.components.colorfield import ColorField
-from harpia.GUI.components.combofield import ComboField
-from harpia.GUI.components.commentfield import CommentField
-from harpia.GUI.components.floatfield import FloatField
-from harpia.GUI.components.iconfield import IconField
-from harpia.GUI.components.intfield import IntField
-from harpia.GUI.components.openfilefield import OpenFileField
-from harpia.GUI.components.savefilefield import SaveFileField
-from harpia.GUI.components.stringfield import StringField
+from mosaicomponents.checkfield import CheckField
+from mosaicomponents.colorfield import ColorField
+from mosaicomponents.combofield import ComboField
+from mosaicomponents.commentfield import CommentField
+from mosaicomponents.floatfield import FloatField
+from mosaicomponents.iconfield import IconField
+from mosaicomponents.intfield import IntField
+from mosaicomponents.openfilefield import OpenFileField
+from mosaicomponents.savefilefield import SaveFileField
+from mosaicomponents.stringfield import StringField
 
 HARPIA_CHECK = "Check"
 HARPIA_CODE = "Code"
